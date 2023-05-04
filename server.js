@@ -11,12 +11,10 @@ const helpers = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up sessions with cookies
 const sess = {
   secret: 'Super secret secret',
   cookie: {
-    // Stored in milliseconds
-    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+    maxAge: 60 * 10 * 1000, // expires after 10 minutes
   },
   resave: false,
   saveUninitialized: true,
@@ -41,7 +39,7 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(
-      `\nServer running on port ${PORT}. Visit http://localhost:${PORT} and create an account!`
+      `\nServer running on port ${PORT}. Visit http://localhost:${PORT}`
     )
   );
 });
