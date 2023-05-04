@@ -8,15 +8,15 @@ Posts.init(
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING(100),
             allowNull: false,
         },
         content: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(2000),
             allowNull: false
         },
         date_created:{
