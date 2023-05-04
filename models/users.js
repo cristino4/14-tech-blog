@@ -36,22 +36,22 @@ User.init(
         len: [8,32],
       },
     },
-    post_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'post',
-            key: 'id'
-        }
-    },
-    comment_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'comment',
-            key: 'id'
-        }
-    }
+    // post_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //         model: 'post',
+    //         key: 'id'
+    //     }
+    // },
+    // comment_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //         model: 'comment',
+    //         key: 'id'
+    //     }
+    // }
   },
   {
     // hooks: {
