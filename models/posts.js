@@ -27,8 +27,8 @@ Posts.init(
             allowNull: false,
             references:{
                 model: 'user',
-                key: 'id'
-            }
+                key: 'id',
+            },
         }
     },
     {
