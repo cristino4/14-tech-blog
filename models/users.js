@@ -19,7 +19,8 @@ User.init(
     username: {
       type: DataTypes.STRING(40),
       allowNull: false,
-      is: /^[\w-]+$/
+      is: /^[\w-]+$/,
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
@@ -36,22 +37,6 @@ User.init(
         len: [8,32],
       },
     },
-    // post_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: 'post',
-    //         key: 'id'
-    //     }
-    // },
-    // comment_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: 'comment',
-    //         key: 'id'
-    //     }
-    // }
   },
   {
     // hooks: {

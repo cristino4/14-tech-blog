@@ -62,7 +62,7 @@ router.get('/dashboard', authCheck, async (req,res) => {
 
 //GET post: If logged in, show post with comments, else
 //show only post with comments disabled
-router.get('post', (req,res) => {
+router.get('/post', (req,res) => {
     try {
         res.render('post',{
             loggedIn: req.session.loggedIn
@@ -72,3 +72,5 @@ router.get('post', (req,res) => {
         res.status(500);
     }
 });
+
+module.exports = router;
