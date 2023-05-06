@@ -7,7 +7,7 @@ Users.hasMany(Posts);
 
 Posts.belongsTo(Users);
 Comments.belongsTo(Users)
-
+    
 Posts.hasMany(Comments);
 Comments.belongsTo(Posts);
 
