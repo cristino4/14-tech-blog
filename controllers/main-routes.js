@@ -18,13 +18,14 @@ router.get('/', async (req, res) =>{
         });
     } catch (error) {
         l.debug(error);
-        res.status(500);
+        res.status(500).send(error);
     }
 });
 
 //GET Login: show login page if not logged in, else show dashboard.
-router.get('/login', async (req, res) => {
+router.get('/login', authCheck,async (req, res) => {
     try {
+        req.session.loggedIn = false;
         if(req.session.loggedIn){
             const user = await Users.findOne({
                 where: {
@@ -39,10 +40,20 @@ router.get('/login', async (req, res) => {
         }
     } catch (error) {
         l.debug(error);
-        res.status(500);
+        res.status(500).send(error);
     }
 });
 
+
+//GET Sign Up: show login page if not logged in, else show dashboard.
+router.get('/signup', async (req, res) => {
+    try {
+        res.render('signup');
+    } catch (error) {
+        l.debug(error);
+        res.status(500).send(error);
+    }
+});
 //GET dashboard: If logged in, show dashboard, else redirect to login
 router.get('/dashboard', authCheck, async (req,res) => {
     try {
@@ -56,7 +67,7 @@ router.get('/dashboard', authCheck, async (req,res) => {
         });
     } catch (error) {
         l.debug(error);
-        res.status(500);
+        res.status(500).send(error);
     }
 });
 
@@ -69,7 +80,7 @@ router.get('/post', (req,res) => {
         });
     } catch (error) {
         l.debug(error);
-        res.status(500);
+        res.status(500).send(error);
     }
 });
 
