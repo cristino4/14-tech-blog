@@ -15,8 +15,12 @@ Posts.init(
             type: DataTypes.STRING(100),
             allowNull: false,
         },
+        summary: {
+            type: DataTypes.STRING(500),
+            allowNull:false,
+        },
         content: {
-            type: DataTypes.STRING(2000),
+            type: DataTypes.STRING(10000),
             allowNull: false
         },
         date_created:{
