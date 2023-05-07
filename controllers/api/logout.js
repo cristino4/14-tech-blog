@@ -6,17 +6,17 @@ const Logging = require('../../utils/logging');
 const l = new Logging();
 
 //DELETE for log out
-router.delete('/', (req, res) => {
+router.get('/', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy((err) => {
         if (err) {
             res.status(400).send('logout fail')
         } else {
-            res.status(204).send('logout ok');
+            res.redirect('/');
         }
         });
     } else {
-      res.status(404).send({message: 'already logged out'});
+      res.redirect('/');
     }
   });
 

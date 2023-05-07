@@ -18,7 +18,7 @@ router.get('/', authCheck, async (req,res) => {
 })
 
 
-//POST: add new user
+//POST: add new user **signup**
 router.post('/',async (req,res) =>{
     try {
         await Users.create({
@@ -30,15 +30,10 @@ router.post('/',async (req,res) =>{
             last_name: req.body.last_name,
             country: req.body.country,
         });
-        //logout
-        if (req.session.loggedIn) {
-            req.session.destroy();
-        };
-        req.session.save(() => {
-            req.session.userEmail = req.body.email;
-            req.session.loggedIn = true;
-        });
+        req.session.userEmail = req.body.email;
+        req.session.loggedIn = true;
         res.redirect('/dashboard');
+
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
