@@ -17,6 +17,7 @@ router.get('/', async (req, res) =>{
         });
         res.render('homepage',{
             posts,
+            loggedIn: req.session.loggedIn
         });
         // res.send(posts);
     } catch (error) {
@@ -25,19 +26,18 @@ router.get('/', async (req, res) =>{
     }
 });
 
-//GET Pictures:
 //GET Login: show login page if not logged in, else show dashboard.
-router.get('/login', authCheck,async (req, res) => {
+router.get('/login',async (req, res) => {
     try {
-        req.session.loggedIn = false;
         if(req.session.loggedIn){
             const user = await Users.findOne({
                 where: {
-                  id: req.session.userId,
+                  id: req.session.userEmail,
                 }
               });
             res.render('dashboard',{
-                user
+                user,
+                loggedIn: req.session.loggedIn                
             });
         } else{
             res.render('login');
@@ -52,7 +52,9 @@ router.get('/login', authCheck,async (req, res) => {
 //GET Sign Up: show login page if not logged in, else show dashboard.
 router.get('/signup', async (req, res) => {
     try {
-        res.render('signup');
+        res.render('signup', {
+            loggedIn: req.session.loggedIn
+        });
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
@@ -63,11 +65,12 @@ router.get('/dashboard', authCheck, async (req,res) => {
     try {
         const user = await Users.findOne({
             where: {
-              id: req.session.userId,
+              id: req.session.userEmail,
             }
           });
         res.render('dashboard',{
-            user
+            user,
+            loggedIn: req.session.loggedIn
         });
     } catch (error) {
         l.debug(error);
