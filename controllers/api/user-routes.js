@@ -8,7 +8,9 @@ const l = new Logging();
 //GET: get users
 router.get('/', authCheck, async (req,res) => {
     try {
-        const data = await Users.findAll();
+        const data = await Users.findAll({
+            include: [Posts]
+        });
         const users = data.map((user) => user.get({plain: true}));
         res.status(200).json(users);
     } catch (error) {
@@ -21,7 +23,7 @@ router.get('/', authCheck, async (req,res) => {
 //POST: add new user **signup**
 router.post('/',async (req,res) =>{
     try {
-        await Users.create({
+        const newUser = await Users.create({
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
@@ -30,6 +32,7 @@ router.post('/',async (req,res) =>{
             last_name: req.body.last_name,
             country: req.body.country,
         });
+        req.session.userId = newUser.id;
         req.session.userEmail = req.body.email;
         req.session.loggedIn = true;
         res.redirect('/dashboard');

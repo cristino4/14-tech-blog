@@ -35,10 +35,7 @@ router.get('/login',async (req, res) => {
                   id: req.session.userEmail,
                 }
               });
-            res.render('dashboard',{
-                user,
-                loggedIn: req.session.loggedIn                
-            });
+            res.redirect('/dashboard');
         } else{
             res.render('login');
         }
@@ -63,20 +60,66 @@ router.get('/signup', async (req, res) => {
 //GET dashboard: If logged in, show dashboard, else redirect to login
 router.get('/dashboard', authCheck, async (req,res) => {
     try {
-        const user = await Users.findOne({
+        var postsAvailable;
+        const data = await Posts.findAll({
             where: {
-              id: req.session.userEmail,
-            }
+                user_id: req.session.userId,
+            },
+            include: [Users]
           });
+        const posts = data.map((post) => {
+            return post.get({plain: true});
+        });
+        if(posts.length === 0){
+            postsAvailable = false;
+        } else {
+            postsAvailable = true;
+        };
         res.render('dashboard',{
-            user,
-            loggedIn: req.session.loggedIn
+            posts,
+            loggedIn: req.session.loggedIn,
+            postsAvailable: postsAvailable,
         });
     } catch (error) {
         l.debug(error);
+        console.log(error)
         res.status(500).send(error);
     }
 });
+// router.get('/dashboard', authCheck, async (req,res) => {
+//     try {
+//         var postsAvailable;
+//         const userData = await Users.findOne({
+//             where: {
+//               email: req.session.userEmail,
+//             },
+//             include: [Posts]
+//           });
+//         // console.log(data)
+//         // const user = userData.map((posts) => {
+//         //     return posts.get({plain: true});
+//         // });
+//         console.log(userData)
+//         const posts = userData.posts;
+//         console.log(posts)
+//         console.log(typeof posts)
+//         if(!posts.length === 0){
+//             postsAvailable = false;
+//         } else {
+//             postsAvailable = true;
+//         };
+//         res.render('dashboard',{
+//             userData,
+//             loggedIn: req.session.loggedIn,
+//             postsAvailable: postsAvailable,
+//             posts: posts
+//         });
+//     } catch (error) {
+//         l.debug(error);
+//         console.log(error)
+//         res.status(500).send(error);
+//     }
+// });
 
 //GET post: If logged in, show post with comments, else
 //show only post with comments disabled
