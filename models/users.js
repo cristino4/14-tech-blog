@@ -35,8 +35,28 @@ User.init(
       allowNull: false,
       validate: {
         len: [8,32],
-      },
+      }
     },
+    about_me: {
+      type: DataTypes.STRING(800),
+      allowNull: true,
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    photo: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   },
   {
     // hooks: {

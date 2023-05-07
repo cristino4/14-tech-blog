@@ -9,19 +9,23 @@ const l = new Logging();
 //GET homepage. Display posts
 router.get('/', async (req, res) =>{
     try {
-        const postData = await Posts.findAll();
+        const postData = await Posts.findAll({
+            include: [Users]
+        });
         const posts = postData.map((posts) => {
             return posts.get({plain: true});
         });
         res.render('homepage',{
-            posts
+            posts,
         });
+        // res.send(posts);
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
     }
 });
 
+//GET Pictures:
 //GET Login: show login page if not logged in, else show dashboard.
 router.get('/login', authCheck,async (req, res) => {
     try {
