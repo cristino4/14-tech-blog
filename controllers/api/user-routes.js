@@ -31,7 +31,14 @@ router.post('/',async (req,res) =>{
             country: req.body.country,
         });
         //logout
-        res.render('dashboard')
+        if (req.session.loggedIn) {
+            req.session.destroy();
+        };
+        req.session.save(() => {
+            req.session.userEmail = req.body.email;
+            req.session.loggedIn = true;
+        });
+        res.redirect('/dashboard');
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
