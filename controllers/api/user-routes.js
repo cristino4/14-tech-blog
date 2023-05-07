@@ -19,14 +19,19 @@ router.get('/', authCheck, async (req,res) => {
 
 
 //POST: add new user
-router.post('/', authCheck,async (req,res) =>{
+router.post('/',async (req,res) =>{
     try {
         await Users.create({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            about_me: req.body.about,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            country: req.body.country,
         });
-        res.send(201);
+        //logout
+        res.render('dashboard')
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
