@@ -1,18 +1,19 @@
+
 <article class="flex max-w-xl flex-col items-start justify-between">
     <form action="/api/posts/update" method='POST' class="relative">
-        <div class="gap-x-4 text-xs">
-            <time class="text-gray-500">Date Created: {{date_created}}</time><br>
-            <time class="text-gray-500">Last Updated: {{date_updated}}</time>
-        </div>
-        <div class ="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <label for="title" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Title</label>
-            <input name="title" type="text" value="{{title}}">
-        </div>
-        <div class="w-full overflow-hidden rounded-lg shadow-sm ">
-            <label for="summary" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Summary</label>
-            <textarea name="summary" rows="5" class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6" placeholder="Summary">{{summary}}</textarea>
-            <label for="content" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Content</label>
-            <textarea name="content" rows="10" class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6" placeholder="Content">{{content}}</textarea>
+        <div class="w-full overflow-hidden rounded-lg shadow-lg ">
+            <div class="gap-x-4 text-xs">
+                <time class="text-gray-500">Date Created: {{date_created}}</time><br>
+                <time class="text-gray-500">Last Updated: {{date_updated}}</time>
+            </div>
+            <div class ="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                <label for="title" class="block text-lg font-medium leading-6 text-gray-900 sm:pt-1.5">Title</label>
+                <input class="p-1.5 border border-dashed rounded text-gray-900 placeholder:text-gray-400 w-full sm:text-sm sm:leading-6" placeholder="title" name="title" type="text" value="{{title}}">
+            </div>
+            <label for="summary" class="block text-lg font-medium leading-6 text-gray-900 sm:pt-1.5">Summary</label>
+            <textarea name="summary" rows="1" class="block w-full resize-none border border-dashed bg-transparent p-1.5 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6" placeholder="Summary">{{summary}}</textarea>
+            <label for="content" class="block text-lg font-medium leading-6 text-gray-900 sm:pt-1.5">Content</label>
+            <textarea name="content" rows="5" class="block w-full resize-none border border-dashed bg-transparent p-1.5 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6" placeholder="Content">{{content}}</textarea>
             <div class="py-2">
                 <div class="py-px">
                     <div class="h-9"></div>
@@ -26,4 +27,4 @@
             </div>
         </div>
     </form>
-<article>
+</article>

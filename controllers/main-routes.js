@@ -79,6 +79,7 @@ router.get('/dashboard', authCheck, async (req,res) => {
             posts,
             loggedIn: req.session.loggedIn,
             postsAvailable: postsAvailable,
+            script: 'js/dashboard.js'
         });
     } catch (error) {
         l.debug(error);
@@ -86,40 +87,6 @@ router.get('/dashboard', authCheck, async (req,res) => {
         res.status(500).send(error);
     }
 });
-// router.get('/dashboard', authCheck, async (req,res) => {
-//     try {
-//         var postsAvailable;
-//         const userData = await Users.findOne({
-//             where: {
-//               email: req.session.userEmail,
-//             },
-//             include: [Posts]
-//           });
-//         // console.log(data)
-//         // const user = userData.map((posts) => {
-//         //     return posts.get({plain: true});
-//         // });
-//         console.log(userData)
-//         const posts = userData.posts;
-//         console.log(posts)
-//         console.log(typeof posts)
-//         if(!posts.length === 0){
-//             postsAvailable = false;
-//         } else {
-//             postsAvailable = true;
-//         };
-//         res.render('dashboard',{
-//             userData,
-//             loggedIn: req.session.loggedIn,
-//             postsAvailable: postsAvailable,
-//             posts: posts
-//         });
-//     } catch (error) {
-//         l.debug(error);
-//         console.log(error)
-//         res.status(500).send(error);
-//     }
-// });
 
 //GET post: If logged in, show post with comments, else
 //show only post with comments disabled

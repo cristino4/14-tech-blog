@@ -20,18 +20,20 @@ router.get('/', authCheck, async (req,res) => {
     }
 })
 //POST create new post
-router.post('/', authCheck, async (req,res) => {
+router.post('/create', authCheck, async (req,res) => {
     try {
         const date = dayjs();
         await Posts.create(
             {
                 title: req.body.title,
                 content: req.body.content,
+                summary: req.body.summary,
                 date_created: date.format('M/DD/YYYY h/mm/ss a'),
-                user_id: req.body.user_id,
+                user_id: req.session.userId,
                 date_updated: date.format('M/DD/YYYY h/mm/ss a'),
             });
-        res.send(201);
+        // res.send(201)
+        res.status(201).redirect('/dashboard')
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
@@ -52,7 +54,7 @@ router.post('/update', authCheck, async (req,res) => {
                     id: req.session.userId,
                 }
             });
-        res.send(201);
+        res.status(201).redirect('/dashboard')
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);
