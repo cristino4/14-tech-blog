@@ -8,8 +8,8 @@ const l = new Logging();
 //POST for login
 router.post('/', async (req, res) => {
     try {
-        if(req.session.loggedIn){
-            res.redirect('/dashboard');
+        if(req.session.loggedIn && req.session.userEmail){
+            res.render('dashboard');
         } else {
             //find the user
             const user = await Users.findOne({
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
                 //check the password
                 if(req.body.password === user.password){
                     //pasword ok
+                    req.session.userId = user.id;
                     req.session.userEmail = user.email
                     req.session.loggedIn = true;
                     res.redirect('/dashboard');
