@@ -25,6 +25,7 @@ Posts.init(
         },
         date_created:{
             type: DataTypes.STRING,
+            allownull: false
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -33,6 +34,10 @@ Posts.init(
                 model: 'user',
                 key: 'id',
             },
+        },
+        date_updated: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {

@@ -10,8 +10,10 @@ const postData = [
         In addition to the emotional benefits, playing guitar is also great for your mental health. It's been shown to reduce stress and anxiety, improve cognitive function, and boost overall well-being. And because it requires focus and concentration, it can also serve as a form of meditation, helping you relax and unwind after a long day.
         So if you're looking for a new hobby to take up, consider giving guitar a try. With its endless possibilities for creativity and expression, it's sure to bring you joy for years to come.`,
         summary: `Playing guitar can be a rewarding and expressive activity that can reduce stress, enhance cognitive function, and promote overall wellbeing. The benefits of learning to play the guitar include improving memory, strengthening hand muscles, increasing creativity, and boosting self-confidence. It's also a fun way to connect with others and explore new forms of musical expression.`,
-        date_created: '03/4/2024',
-        user_id: 1
+        date_created: '03/4/2024 5:34:34 pm',
+        user_id: 1,
+        date_updated: '03/4/2024 5:34:34 pm'
+
     },
     {
         title: 'My favorite new developments in technology',
@@ -27,8 +29,9 @@ const postData = [
         
         In conclusion, the latest technology advancements cover a vast array of inventions that are changing the world. From 5G networks to artificial intelligence, virtual and augmented reality to blockchain, these innovations are reshaping our lives in profound ways. It's an exciting time to be alive, and we can't wait to see what the future holds.`,
         summary: `5G networks, AI, VR/AR and Blockchain are latest technological advancements reshaping our lives drastically. Exciting opportunities arise with these.`,
-        date_created: '03/5/2024',
-        user_id: 2
+        date_created: '03/5/2024 7:34:34 pm',
+        user_id: 2,
+        date_updated: '03/5/2024 7:34:34 pm'
     }
 ];
 

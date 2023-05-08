@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-2xl">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">My Posts</h2>
         {{#if postsAvailable}}
-            <p class="mt-2 text-lg leading-8 text-gray-600">Here are your posts.</p>
+            <p class="mt-2 text-lg leading-8 text-gray-600">Here are your posts.<br>Click on the title or content to edit.</p>
             <div class="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
                 {{#each posts as |post|}}
                     {{> post-dashboard}}
