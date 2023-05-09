@@ -44,14 +44,14 @@ router.post('/create', authCheck, async (req,res) => {
 router.post('/update', authCheck, async (req,res) => {
     try {
         const date = dayjs();
-
+        console.log(req.body)
         await Posts.update({
             ...req.body,
             ...{date_updated: date.format('M/DD/YYYY h:mm:ss a')}
         },
             {
                 where:{
-                    id: req.session.userId,
+                    id: Number(req.body.id),
                 }
             });
         res.status(201).redirect('/dashboard')

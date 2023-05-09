@@ -3,6 +3,11 @@
     <form action="/api/posts/update" method='POST' class="relative">
         <div class="w-full overflow-hidden rounded-lg shadow-lg ">
             <div class="gap-x-4 text-xs">
+                <div class="flex">
+                    <p class="text-xs text-gray-500">ID : </p>
+                    <p id="id" class="text-xs text-gray-500"> {{id}}</p><br>
+                </div>
+                <input name="id" id="idInput" class="hidden" value="{{id}}">
                 <time class="text-gray-500">Date Created: {{date_created}}</time><br>
                 <time class="text-gray-500">Last Updated: {{date_updated}}</time>
             </div>
