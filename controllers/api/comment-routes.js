@@ -9,7 +9,11 @@ const l = new Logging();
 //GET comments
 router.get('/', authCheck, async (req,res) => {
     try {
-        const data = await Comments.findAll();
+        const data = await Comments.findAll({
+            order: [
+                ['id','DESC']
+            ]
+        });
         const comments = data.map((comment) => comment.get({plain: true}));
         res.status(200).json(comments);
     } catch (error) {

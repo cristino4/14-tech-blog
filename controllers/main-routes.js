@@ -10,7 +10,10 @@ const l = new Logging();
 router.get('/', async (req, res) =>{
     try {
         const postData = await Posts.findAll({
-            include: [Users]
+            include: [Users],
+            order: [
+                ['id','DESC']
+            ]
         });
         const posts = postData.map((posts) => {
             return posts.get({plain: true});
@@ -65,7 +68,10 @@ router.get('/dashboard', authCheck, async (req,res) => {
             where: {
                 user_id: req.session.userId,
             },
-            include: [Users]
+            include: [Users],
+            order: [
+                ['id','DESC']
+            ]
           });
         const posts = data.map((post) => {
             return post.get({plain: true});
@@ -83,16 +89,32 @@ router.get('/dashboard', authCheck, async (req,res) => {
         });
     } catch (error) {
         l.debug(error);
-        console.log(error)
         res.status(500).send(error);
     }
 });
 
 //GET post: If logged in, show post with comments, else
 //show only post with comments disabled
-router.get('/post', (req,res) => {
+router.get('/posts/:id', async (req,res) => {
     try {
-        res.render('post',{
+        const data = await Posts.findOne({
+            where:{
+                id: req.params.id
+            },
+            include: [Users,Comments]
+        });
+        const post = data.get({plain: true});
+        const commentData = await Comments.findAll({
+            where: {
+                post_id: req.params.id
+            },
+            include: [Users]
+        });
+        const comments = commentData.map((comment) => {return comment.get({plain: true})});
+        console.log(comments)
+        res.render('post-page',{
+            post,
+            comments,
             loggedIn: req.session.loggedIn
         });
     } catch (error) {
@@ -100,5 +122,6 @@ router.get('/post', (req,res) => {
         res.status(500).send(error);
     }
 });
+
 
 module.exports = router;
