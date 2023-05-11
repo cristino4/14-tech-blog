@@ -2,6 +2,11 @@ const newPostButton = document.querySelector('#newPostButton');
 const modal = document.querySelector('#modal');
 const modalCloseButton = document.querySelector('#modalCloseButton');
 
+const idEl = document.querySelector('#id');
+const idInput = document.querySelector('#idInput');
+
+
+
 newPostButton.addEventListener('click',()=>{
     console.log('open modal!');
     modal.classList.remove('translate-x-full');
