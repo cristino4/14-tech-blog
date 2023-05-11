@@ -30,9 +30,9 @@ router.post('/', authCheck, async (req,res) => {
             content: req.body.content,
             date_posted: date.format('MM/DD/YYYY'),
             post_id: req.body.post_id,
-            user_id: req.body,user_id
+            user_id: req.body.user_id
         });
-        res.send(201);
+        res.status(201).redirect(`/posts/${req.body.post_id}`)
     } catch (error) {
         l.debug(error);
         res.status(500).send(error);

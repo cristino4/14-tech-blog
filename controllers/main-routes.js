@@ -20,7 +20,7 @@ router.get('/', async (req, res) =>{
         });
         res.render('homepage',{
             posts,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
         });
         // res.send(posts);
     } catch (error) {
@@ -108,14 +108,18 @@ router.get('/posts/:id', async (req,res) => {
             where: {
                 post_id: req.params.id
             },
-            include: [Users]
+            include: [Users],
+            order: [
+                ['id','DESC']
+            ]
         });
         const comments = commentData.map((comment) => {return comment.get({plain: true})});
         console.log(comments)
         res.render('post-page',{
             post,
             comments,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.userId
         });
     } catch (error) {
         l.debug(error);

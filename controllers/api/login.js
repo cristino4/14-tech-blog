@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
                 if(req.body.password === user.password){
                     //pasword ok
                     req.session.userId = user.id;
+                    req.session.username = user.username
                     req.session.userEmail = user.email
                     req.session.loggedIn = true;
                     res.redirect('/dashboard');
